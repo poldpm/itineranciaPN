@@ -14,11 +14,18 @@
 <header>
   <img src="images/logo-parc.png" alt="Logo Parc Natural" class="logo-cap">
   <h1>Itinerància</h1>
-  <button id="btnConfig" class="icon-btn" title="Configuració">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="white" aria-hidden="true">
-      <path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.01 7.01 0 0 0-1.62-.94l-.36-2.54A.48.48 0 0 0 14 2h-4a.48.48 0 0 0-.48.41l-.36 2.54a7.08 7.08 0 0 0-1.61.94l-2.39-.96a.48.48 0 0 0-.59.22L2.65 8.47a.47.47 0 0 0 .12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.47.47 0 0 0-.12.61l1.92 3.32c.12.22.37.3.59.22l2.39-.96c.5.36 1.04.67 1.62.94l.36 2.54c.06.28.31.48.6.48h4c.28 0 .53-.2.59-.47l.36-2.54a7.07 7.07 0 0 0 1.61-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.47.47 0 0 0-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/>
-    </svg>
-  </button>
+  <div class="cap-botons">
+    <button id="btnMapa" class="icon-btn" title="Veure mapa">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="white" aria-hidden="true">
+        <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM10 5.47l4 1.4v11.66l-4-1.4V5.47zm-5 .99l3-1.01v11.7l-3 1.16V6.46zm14 11.08l-3 1.01V7.86l3-1.16v10.84z"/>
+      </svg>
+    </button>
+    <button id="btnConfig" class="icon-btn" title="Configuració">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="white" aria-hidden="true">
+        <path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.01 7.01 0 0 0-1.62-.94l-.36-2.54A.48.48 0 0 0 14 2h-4a.48.48 0 0 0-.48.41l-.36 2.54a7.08 7.08 0 0 0-1.61.94l-2.39-.96a.48.48 0 0 0-.59.22L2.65 8.47a.47.47 0 0 0 .12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.47.47 0 0 0-.12.61l1.92 3.32c.12.22.37.3.59.22l2.39-.96c.5.36 1.04.67 1.62.94l.36 2.54c.06.28.31.48.6.48h4c.28 0 .53-.2.59-.47l.36-2.54a7.07 7.07 0 0 0 1.61-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.47.47 0 0 0-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/>
+      </svg>
+    </button>
+  </div>
 </header>
 
 <!-- PANTALLA: selecció d'àrea (inici de jornada) -->
@@ -94,7 +101,55 @@
 
 <div id="toast" class="toast"></div>
 
+<!-- ===================== VISOR DE MAPA ===================== -->
+<div id="mapaOverlay" class="mapa-overlay">
+  <div class="mapa-top">
+    <button id="mapaTancar" class="mapa-btn-top" title="Tancar">✕</button>
+    <span id="mapaTitol" class="mapa-titol">Mapa</span>
+    <button id="mapaCentrar" class="mapa-btn-top" title="Centrar en la meva posició">◎</button>
+  </div>
+
+  <div id="mapaViewport" class="mapa-viewport">
+    <div id="mapaMon" class="mapa-mon">
+      <img id="mapaImg" class="mapa-img" alt="Mapa de l'àrea">
+      <!-- El localitzador (punt blau) es posa aquí per JS -->
+      <div id="localitzador" class="localitzador" style="display:none;">
+        <div class="loc-pols"></div>
+        <div class="loc-punt"></div>
+      </div>
+      <!-- Marques de calibració -->
+      <div id="marquesCalib"></div>
+    </div>
+  </div>
+
+  <!-- Barra d'estat GPS -->
+  <div id="mapaEstat" class="mapa-estat"></div>
+
+  <!-- Panell de calibració (amagat per defecte) -->
+  <div id="calibPanell" class="calib-panell" style="display:none;">
+    <div class="calib-text" id="calibText"></div>
+
+    <!-- Entrada manual de coordenades (apareix després de tocar el punt) -->
+    <div id="calibManual" class="calib-manual" style="display:none;">
+      <label class="calib-label">Coordenades d'aquest punt (lat, long):</label>
+      <input id="calibCoord" class="calib-input" type="text"
+             placeholder="42.3120, 2.2050" autocomplete="off"
+             autocapitalize="off" autocorrect="off" spellcheck="false">
+      <div class="calib-ajuda">Enganxa-les tal com les tinguis (Google Maps, GPS…). Val amb coma o punt i coma.</div>
+    </div>
+
+    <div class="calib-botons">
+      <button id="calibCancelar" class="calib-btn secundari">Cancel·lar</button>
+      <button id="calibAccio" class="calib-btn principal" style="display:none;">Desar punt</button>
+    </div>
+  </div>
+
+  <!-- Botó per entrar al mode calibració -->
+  <button id="btnCalibrar" class="mapa-calibrar" title="Calibrar el mapa">⌖ Calibrar</button>
+</div>
+
 <script src="dades.js"></script>
+<script src="mapa.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

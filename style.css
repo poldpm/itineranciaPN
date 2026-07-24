@@ -510,3 +510,205 @@ label {
     grid-template-columns: 1fr;
   }
 }
+
+/* Contenidor dels botons de la capçalera (mapa + configuració) */
+.cap-botons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 2;             /* els botons per sobre del títol */
+}
+
+/* ============================================================
+   VISOR DE MAPA amb LOCALITZADOR GPS
+   ============================================================ */
+.mapa-overlay {
+  position: fixed;
+  inset: 0;
+  background: #1a1a1a;
+  z-index: 2000;
+  display: none;
+  flex-direction: column;
+}
+.mapa-overlay.obert { display: flex; }
+
+.mapa-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  padding-top: max(12px, env(safe-area-inset-top));
+  background: #2e7d32;
+  color: white;
+  flex-shrink: 0;
+}
+.mapa-titol { flex: 1; text-align: center; font-weight: 600; font-size: 1.05rem; }
+.mapa-btn-top {
+  background: rgba(255,255,255,0.18);
+  border: none; color: white;
+  width: 42px; height: 42px; border-radius: 50%;
+  font-size: 1.3rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.mapa-btn-top:active { background: rgba(255,255,255,0.32); }
+
+.mapa-viewport {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  touch-action: none;
+  background: #2a2a2a;
+}
+.mapa-mon {
+  position: absolute;
+  top: 0; left: 0;
+  will-change: transform;
+}
+.mapa-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Localitzador (punt blau tipus Google Maps) */
+.localitzador {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 5;
+}
+.loc-punt {
+  width: 18px; height: 18px;
+  background: #1a73e8;
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(0,0,0,0.5);
+  position: relative;
+  z-index: 2;
+}
+.loc-pols {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 18px; height: 18px;
+  transform: translate(-50%, -50%);
+  background: rgba(26,115,232,0.3);
+  border-radius: 50%;
+  animation: pols 2s ease-out infinite;
+}
+@keyframes pols {
+  0% { width: 18px; height: 18px; opacity: 0.8; }
+  100% { width: 70px; height: 70px; opacity: 0; }
+}
+
+/* Marques de calibració */
+.calib-marca {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 30px; height: 30px;
+  background: #e2570a;
+  color: white;
+  border: 2px solid white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.9rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  z-index: 6;
+}
+
+/* Barra d'estat GPS */
+.mapa-estat {
+  padding: 10px 16px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom));
+  background: #263238;
+  color: #eceff1;
+  font-size: 0.9rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+.mapa-estat.ok { background: #1b5e20; }
+.mapa-estat.avis { background: #b26500; }
+
+/* Botó de calibrar */
+.mapa-calibrar {
+  position: absolute;
+  bottom: 74px; right: 16px;
+  background: white;
+  color: #2e7d32;
+  border: 2px solid #2e7d32;
+  border-radius: 24px;
+  padding: 10px 18px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+.mapa-calibrar:active { transform: scale(0.97); }
+
+/* Panell de calibració */
+.calib-panell {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: white;
+  padding: 18px 18px;
+  padding-bottom: max(18px, env(safe-area-inset-bottom));
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+  z-index: 20;
+  border-radius: 18px 18px 0 0;
+}
+.calib-text { font-size: 0.98rem; line-height: 1.5; color: #263238; margin-bottom: 14px; }
+.calib-botons { display: flex; gap: 10px; }
+.calib-btn {
+  flex: 1;
+  padding: 13px;
+  border-radius: 12px;
+  font-size: 1rem; font-weight: 600;
+  cursor: pointer; border: none;
+}
+.calib-btn.principal { background: #2e7d32; color: white; }
+.calib-btn.secundari { background: #eceff1; color: #455a64; }
+
+/* Toast del mapa */
+.mapa-toast {
+  position: absolute;
+  bottom: 130px; left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: #263238; color: white;
+  padding: 12px 20px; border-radius: 24px;
+  font-size: 0.92rem;
+  opacity: 0; transition: all 0.25s;
+  pointer-events: none; z-index: 30;
+  max-width: 88%; text-align: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+.mapa-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* Entrada manual de coordenades a la calibració */
+.calib-manual { margin-bottom: 14px; }
+.calib-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #37474f;
+  margin-bottom: 7px;
+}
+.calib-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 2px solid #b0bec5;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  font-family: inherit;
+}
+.calib-input:focus { border-color: #2e7d32; outline: none; }
+.calib-ajuda {
+  font-size: 0.8rem;
+  color: #78909c;
+  margin-top: 6px;
+  line-height: 1.4;
+}

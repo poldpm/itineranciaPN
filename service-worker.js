@@ -1,4 +1,4 @@
-const CACHE_NAME = 'itinerancia-pn-v3';
+const CACHE_NAME = 'itinerancia-pn-v4';
 
 const ARXIUS = [
   './',
@@ -6,10 +6,13 @@ const ARXIUS = [
   './style.css',
   './app.js',
   './dades.js',
+  './mapa.js',
   './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png',
-  './images/logo-parc.png'
+  './images/logo-parc.png',
+  './images/mapa-coll-meianell.jpg',
+  './images/mapa-collada-fonda.jpg'
 ];
 
 self.addEventListener('install', (event) => {
