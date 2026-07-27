@@ -5,7 +5,9 @@
 // camps del formulari (extrets dels formularis de Google del Parc).
 //
 // Els punts poden ser text simple (sense número) o objecte {num, nom}.
-// Aquí van sense número, tal com als formularis actuals.
+// Coll de Meianell i Collada Fonda porten el NÚMERO del mapa oficial (per
+// identificar de seguida a quin tram s'entren les dades); les àrees de
+// Queralbs (Pista + Aparcament) van sense número.
 //
 // Cada àrea mostra només les seccions que té:
 //   - Coll de Meianell i Collada Fonda: només trams.
@@ -31,22 +33,22 @@ const DADES = {
       nom: "AI Coll de Meianell",
       camps: CAMPS_PARC,
       trams: [
-        "Tram de Tregurà",
-        "Tram de la Creu de Fusta",
-        "Tram del revolt de Salavert",
-        "Tram del revolt de la Vaca Morta",
-        "Tram del collet de la Gralla",
-        "Tram de la ribera de Fontlletera",
-        "Tram del refugi del Balandrau",
-        "Tram del Placondal",
-        "Tram del Cerverís",
-        "Tram del coll de Meianell",
-        "Tram de la serra de la Guilla",
-        "Tram del bosc de Pardinelles",
-        "Tram del Solei de Cornador",
-        "Tram del refugi del Pla de l'Erola",
-        "Tram del bosc de Vilardell",
-        "Tram de Ribesaltes"
+        { num: 1,  nom: "Tram de Tregurà" },
+        { num: 2,  nom: "Tram de la Creu de Fusta" },
+        { num: 3,  nom: "Tram del revolt de Salavert" },
+        { num: 4,  nom: "Tram del revolt de la Vaca Morta" },
+        { num: 5,  nom: "Tram del collet de la Gralla" },
+        { num: 6,  nom: "Tram de la ribera de Fontlletera" },
+        { num: 7,  nom: "Tram del refugi del Balandrau" },
+        { num: 8,  nom: "Tram del Placondal" },
+        { num: 9,  nom: "Tram del Cerverís" },
+        { num: 10, nom: "Tram del coll de Meianell" },
+        { num: 11, nom: "Tram de la serra de la Guilla" },
+        { num: 12, nom: "Tram del bosc de Pardinelles" },
+        { num: 13, nom: "Tram del Solei de Cornador" },
+        { num: 14, nom: "Tram del refugi del Pla de l'Erola" },
+        { num: 15, nom: "Tram del bosc de Vilardell" },
+        { num: 16, nom: "Tram de Ribesaltes" }
       ],
       aparcaments: []
     },
@@ -54,20 +56,20 @@ const DADES = {
       nom: "AI Collada Fonda",
       camps: CAMPS_PARC,
       trams: [
-        "Tram les Boneres",
-        "Tram revolt de Concròs",
-        "Tram revolt de Carboners",
-        "Tram de la Baidana",
-        "Tram del Pla Cominal",
-        "Tram de la cabana d'en Moixina",
-        "Tram de la pista de la Balmeta",
-        "Tram de la Collada Fonda",
-        "Tram del revolt de la collada de Llamps",
-        "Tram del Refugi Saleres - Mànega",
-        "Tram del revolt de la Canyola",
-        "Tram dels revolts del Rost d'en Guillot",
-        "Tram del torrent de la Casassa",
-        "Tram de la plana Joliva"
+        { num: 1,  nom: "Tram les Boneres" },
+        { num: 2,  nom: "Tram revolt de Concròs" },
+        { num: 3,  nom: "Tram revolt de Carboners" },
+        { num: 4,  nom: "Tram de la Baidana" },
+        { num: 5,  nom: "Tram del Pla Cominal" },
+        { num: 6,  nom: "Tram de la cabana d'en Moixina" },
+        { num: 7,  nom: "Tram de la pista de la Balmeta" },
+        { num: 8,  nom: "Tram de la Collada Fonda" },
+        { num: 9,  nom: "Tram del revolt de la collada de Llamps" },
+        { num: 10, nom: "Tram del Refugi Saleres - Mànega" },
+        { num: 11, nom: "Tram del revolt de la Canyola" },
+        { num: 12, nom: "Tram dels revolts del Rost d'en Guillot" },
+        { num: 13, nom: "Tram del torrent de la Casassa" },
+        { num: 14, nom: "Tram de la plana Joliva" }
       ],
       aparcaments: []
     },
