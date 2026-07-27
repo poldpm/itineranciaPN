@@ -1,4 +1,4 @@
-const CACHE_NAME = 'itinerancia-pn-v4';
+const CACHE_NAME = 'itinerancia-pn-v5';
 
 const ARXIUS = [
   './',
