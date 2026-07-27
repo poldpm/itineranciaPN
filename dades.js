@@ -9,7 +9,7 @@
 //
 // Cada àrea mostra només les seccions que té:
 //   - Coll de Meianell i Collada Fonda: només trams.
-//   - Daió i Fontalba: Pista (com a tram) i Aparcament.
+//   - Daió, Fontalba i Collet de les Barraques: Pista (com a tram) i Aparcament.
 // ============================================================
 
 // Camps comuns a totes les àrees del Parc
@@ -83,6 +83,16 @@ const DADES = {
     },
     {
       nom: "AI Queralbs - Fontalba",
+      camps: CAMPS_PARC,
+      trams: [
+        "Pista"
+      ],
+      aparcaments: [
+        "Aparcament"
+      ]
+    },
+    {
+      nom: "AI Queralbs - Collet de les Barraques",
       camps: CAMPS_PARC,
       trams: [
         "Pista"
