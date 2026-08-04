@@ -11,7 +11,7 @@
 // (es baixen un sol cop i es conserven), i l'actualització és ràpida.
 // ============================================================
 
-const CACHE_SHELL = 'itinerancia-pn-v8';
+const CACHE_SHELL = 'itinerancia-pn-v9';
 const CACHE_MAPES = 'itinerancia-pn-mapes-v1';
 
 const SHELL = [
