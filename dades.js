@@ -17,7 +17,7 @@
 // Camps comuns a totes les àrees del Parc
 const CAMPS_PARC = [
   { id: "veh_aparcament", etiqueta: "Vehicles en aparcament", tipus: "number", obligatori: false },
-  { id: "veh_fora_aparcament", etiqueta: "Vehicles fora d'aparcament", tipus: "number", obligatori: false },
+  { id: "veh_fora_aparcament", etiqueta: "Vehicles aparcats al voral de la pista", tipus: "number", obligatori: false },
   { id: "veh_impedeixen_pas", etiqueta: "Vehicles que impedeixen el pas", tipus: "number", obligatori: false },
   { id: "autocaravana_pernocta", etiqueta: "Autocaravanes / furgonetes en pernocta", tipus: "number", obligatori: false },
   { id: "camping_excessiu", etiqueta: "Càmping excessiu (més d'una taula i 2 cadires)", tipus: "number", obligatori: false },
